@@ -3,6 +3,7 @@
   <persistence-unit name="Top03" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.exec02topicos.model.Usuario</class>
+    <class>com.exec02topicos.model.Cidade</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jpa3"/>
