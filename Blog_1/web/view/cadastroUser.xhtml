@@ -1,0 +1,43 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:param name="footerTitle" value="OizumiKurodaTek, Copyright © 2015 - All rights reserved."/>
+    <ui:define name="principal">
+        <h:body>
+            <h1>${msg["REGISTRATITON_USER"]}</h1>
+            <h:form>
+                <p:panel id="cadastro">
+                    <p:messages id="msgs" />
+
+                    <h:panelGrid columns="1" cellpadding="5">
+                        <p:outputLabel for="fnome" value="Nome:" />
+                        <p:inputText id="fnome" value="#{usuarioBean.usuario}" label="nome">
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                        <p:message for="fnome" display="icon" />
+
+                        <p:outputLabel for="fsenha" value="Senha: " />
+                        <p:password id="fsenha" value="#{usuarioBean.senha}" label="senha" >
+                            <f:validateLength minimum="5"/>
+                            <p:ajax update="msgLastname" event="keyup" />
+                        </p:password>
+                        <p:message for="fsenha" id="msgLastname" display="icon" />
+                        <br/><br/>
+                        <p:commandButton actionListener="#{usuarioBean.cadastrar}" value="CADASTRAR" update="cadastro"/>
+                    </h:panelGrid>
+                    <br/>
+                    <p:commandLink action="#{navigationBean.toWelcome}" value="voltar para welcome"/>
+                    <br/>
+                    <br/>
+                    <p:commandLink action="#{loginBean.doLogout}" value="Logout" />
+                </p:panel>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

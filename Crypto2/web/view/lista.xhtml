@@ -1,0 +1,31 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:param name="footerTitle" value="OizumiKurodaTek, Copyright © 2015 - All rights reserved."/>
+    <ui:define name="principal">
+        <h:body>
+            <h1>Lista de Usuarios</h1>
+            <p:dataTable value="#{usuarioBean.lista}" var="l">
+                <p:column headerText="id" width="15">
+                    <h:outputText value="#{l.id}"/>
+                </p:column>
+                <p:column headerText="Usuário">
+                    <h:outputText value="#{l.login}"/>
+                </p:column>
+                <p:column headerText="Senha criptografada">
+                    <h:outputText value="#{l.senha}"/>
+                </p:column>
+            </p:dataTable>
+            <h:form>
+                <p:commandButton action="#{loginBean.doLogout}" value="Logout" />
+                <p:commandButton action="#{navigationBean.toCadastroUser}" value="Ir para cadastro de usuários"/>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

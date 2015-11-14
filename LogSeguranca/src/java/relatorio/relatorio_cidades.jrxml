@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f81c10d1-3b95-4a60-88eb-c448e2ff90af">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="4834572a-18a3-4b67-8728-30049c9a9818"/>
+	<queryString>
+		<![CDATA[SELECT
+     cidade."id" AS cidade_id,
+     cidade."estado" AS cidade_estado,
+     cidade."nomecidade" AS cidade_nomecidade
+FROM
+     "public"."cidade" cidade]]>
+	</queryString>
+	<field name="cidade_id" class="java.lang.Long"/>
+	<field name="cidade_estado" class="java.lang.String"/>
+	<field name="cidade_nomecidade" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="18" width="555" height="44" uuid="eae57262-53d0-4e78-8355-9af5bac8c7d8"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatório de cidades]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="20" uuid="cc480786-066d-4796-bb5a-0df9f2498d88"/>
+				<text><![CDATA[cidade_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="20" uuid="83b5fb22-3879-48ff-926f-5a4fd642ff2e"/>
+				<text><![CDATA[cidade_estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="20" uuid="e3fff7b5-51ef-4758-984b-6fd93be6e378"/>
+				<text><![CDATA[cidade_nomecidade]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="20" uuid="a0175a24-81d0-46cf-a925-c40e186b5919"/>
+				<textFieldExpression><![CDATA[$F{cidade_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="819b44d3-3a30-44be-aaf7-228ae5ada9d5"/>
+				<textFieldExpression><![CDATA[$F{cidade_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="c151cef2-77ba-425a-a55a-e0f23041dd20"/>
+				<textFieldExpression><![CDATA[$F{cidade_nomecidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="185" y="34" width="179" height="20" uuid="bbc20f0a-31ff-4942-8f77-4df40937b756"/>
+				<text><![CDATA[relatório de cidades cadastradas]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

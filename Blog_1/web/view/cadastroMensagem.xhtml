@@ -1,0 +1,29 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:param name="footerTitle" value="OizumiKurodaTek, Copyright © 2015 - All rights reserved."/>
+    <ui:define name="principal">    
+        <h:body>
+            <h:form id="formCadMensagens">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="fTitulo" value="Titulo:" />
+                    <p:inputText id="fTitulo" value="#{mensagemBean.titulo}"  label="titulo" />
+
+                    <h:outputLabel for="fTexto" value="Texto:" />
+                    <p:inputTextarea id="fTexto" value="#{mensagemBean.texto}"  label="texto" cols="70" />
+                    <br/><br/>
+                    <p:commandButton actionListener="#{mensagemBean.cadastrarM}" update="formCadMensagens" value="CADASTRAR"/>
+                </h:panelGrid>
+                <p:commandLink action="#{loginBean.doLogout}" value="Logout"/>
+                <br/>
+                <p:commandLink action="#{navigationBean.redirectToWelcome}" value="voltar para welcome"/>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

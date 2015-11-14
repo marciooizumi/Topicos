@@ -1,0 +1,82 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:define name="principal">
+        <h:body>
+            <div style="padding: 40px;">
+                <h3>${msg["WELCOME"]} #{loginBean.username}</h3>
+                <br/>
+                <h1>${msg["MESSAGE"]}</h1>
+                <h:form id="formMensagens">
+                    <ul>
+                        <c:forEach items="#{mensagemBean.listarM}" var="l" >
+                            <li>
+                                <h1>#{l.titulo}</h1>
+                                <h3>#{l.texto}</h3>
+                                <p:commandLink title="Alterar" action="#{navigationBean.toEditarMsg()}" >${msg["ALTER"]} 
+                                    <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                                 value="#{l}"  />
+                                </p:commandLink >
+                                <p:commandLink title="Excluir" action="#{mensagemBean.excluir()}" > | ${msg["DELETE"]}
+                                    <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                                 value="#{l}" />
+                                </p:commandLink>
+                                <br/>
+                                <br/>
+                                <h:outputText>#{l.usuario.login}</h:outputText>
+                                <h:outputText>#{l.usuario.post}</h:outputText>
+                                <ul>
+                                    <c:forEach items="#{comentarioBean.lista}" var="c">
+                                        <li>
+                                            <h4>#{c.usuario.login}</h4>
+                                            <h5>#{c.post}</h5>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                                <form>
+                                    <h:inputHidden value="#{l}"/>
+                                    <p:inputText id="comentario" value="#{comentarioBean.post}" label="Comentario Cadastrado">
+                                        <f:validateLength minimum="5" maximum="30"/>
+                                    </p:inputText>
+                                    <p:commandButton value="Enviar" action="#{comentarioBean.cadastrarComentario}"/>
+                                </form>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </h:form>
+                <h:form>
+                    <h:outputText>${msg["SECURED"]}</h:outputText>
+                    <br/>
+                    <p:commandLink action="#{loginBean.doLogout}" >${msg["LOGOUT"]}</p:commandLink>
+                    <br/>
+                    <p:commandLink action="#{navigationRules.cadastroUser}">${msg["REGISTRATITON_USER"]}</p:commandLink>
+                    <br/>
+                    <p:commandLink action="#{navigationBean.toCadastroMensagem}">${msg["REGISTRATITON_MESSAGE"]}</p:commandLink>
+                    <br/>
+                    <p:commandLink action="#{navigationBean.redirectToLista}">${msg["GO_LIST"]}</p:commandLink>
+                </h:form>
+
+                <h1>Convertendo horas</h1>
+                <h:outputLabel for="horaAgora" value="Insira a hora?"/>
+                <h:inputText id="horaAgora" value="#{dateConverter.horaAgora}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+                
+                <fieldset>
+                    <legend>Valor convertido</legend>
+                    <h:outputText value="#{dateConverter.horaAgora}">
+                        <f:convertDateTime pattern="yyyy - MM - dd --> E, Ha"/>
+                    </h:outputText>
+                </fieldset>
+                
+
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>

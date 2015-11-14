@@ -1,0 +1,40 @@
+body { margin: 0; padding: 0;   }
+
+h1:first-child { margin-top: 0}
+
+.wrapper {
+    width: 100%;
+    max-width: 860px;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 3px 3px 3px #666;
+}
+
+.main {
+    border-left: 1px solid black;
+    background-color: wheat;
+}
+
+.header {
+    width: 90%;
+    height: 60px;
+    min-width: 800px;
+    background-color: cornflowerblue;
+    padding: 30px;
+}
+
+.main {
+    min-height: 100px;
+    padding: 15px;
+    max-width: 830px;
+    width: 100%;
+}
+
+.footer {
+    height: 50px;
+    padding: 1px;
+    background-color: graytext;
+    min-width: 800px;
+    text-align: center;
+}
+

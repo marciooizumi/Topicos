@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Lista de mensagens</title>
+    </h:head>
+    <h:body>
+        <h1>Lista de mensagens abaixo</h1>
+        <h:form id="formPrincipal">
+            <p:dataTable var="m" value="#{mensagemBean.listarM}" id="tabelaMensagens" editable="true" editMode="cell">
+                <f:facet name="header">
+                    Lista de mensagens cadastradas
+                </f:facet>
+                <p:column headerText="Id">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{m.id}" /></f:facet>
+                        <f:facet name="input"><p:inputText id="modelInput" value="#{m.id}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Titulo">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{m.titulo}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{m.titulo}" style="width:96%" label="titulo"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Texto">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{m.texto}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{m.texto}" style="width:96%" label="texto"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Ações">
+                    <p:commandLink title="Alterar" action="#{navigationBean.toEditarMsg}">Alterar
+                        <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                     value="#{m}" />
+                    </p:commandLink>
+                    <p:commandLink title="Excluir" update=":formExcluir:Excluir"
+                                   oncomplete="confirmation.show()" immediate="true">Excluir
+                        <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                     value="#{m}" />
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h:form id="formAlterar">
+            <p:dialog header="Alterar" widgetVar="dialogAlterar" modal="true"
+                      id="Alterar">
+                <p:panelGrid id="panelAlterar" columns="2">
+                    <h:outputText value="Título:" />
+                    <p:inputText value="#{mensagemBean.mensagem.titulo}" />
+                    <h:outputText value="Texto:" />
+                    <p:inputText value="#{mensagemBean.mensagem.texto}" />
+                </p:panelGrid>
+                <p:commandButton value="Alterar"
+                                 actionListener="#{mensagemBean.atualizar}"
+                                 update=":formPrincipal:tabelaMensagens"
+                                 oncomplete="dialogAlterar.hide()" />
+            </p:dialog>
+        </h:form>
+        
+        <h:form id="formExcluir">
+            <p:confirmDialog id="Excluir"
+                             message="Você gostaria de Deletar o #{mensagemBean.mensagem.titulo}?"
+                             header="Excluir" severity="alert" widgetVar="confirmation">
+
+                <p:commandButton id="confirm" value="Sim"
+                                 oncomplete="confirmation.hide()"
+                                 actionListener="#{mensagemBean.excluir}"
+                                 update=":formPrincipal:tabelaPessoas" />
+                <p:commandButton id="decline" value="Não"
+                                 onclick="confirmation.hide()" type="button" />
+
+            </p:confirmDialog>
+        </h:form>
+    </h:body>
+</html>
+

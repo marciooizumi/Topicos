@@ -1,0 +1,57 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:param name="footerTitle" value="OizumiKurodaTek, Copyright © 2015 - All rights reserved."/>
+    <ui:define name="principal">
+        <h:body>
+            <h3>${msg["WELCOME"]} #{loginBean.username}</h3>
+            <br/>
+            <h1>${msg["MESSAGE"]}</h1>
+            <h:form id="formMensagens" style="overflow: auto;">
+
+                <c:forEach items="#{mensagemBean.listarM}" var="l" >
+
+                    <p:fieldset >
+                        <h:outputText value="Postado em: "/>
+                        <h:outputText value="#{l.dataMensagem.time}">
+                            <f:convertDateTime pattern="dd/MM/yyyy - HH:mm" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                        <h1>#{l.titulo} </h1>
+                        <h3>#{l.texto}</h3>
+                        <p:commandLink title="Alterar" action="#{navigationBean.toEditarMsg}" ajax="false" update="formMensagens">${msg["ALTER"]} 
+                            <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                         value="#{l}"  />
+                        </p:commandLink >
+                        <p:commandLink title="Excluir" action="#{mensagemBean.excluir}" ajax="false" update="formMensagens"> | ${msg["DELETE"]}
+                            <f:setPropertyActionListener target="#{mensagemBean.mensagem}"
+                                                         value="#{l}"  />
+                        </p:commandLink>
+                       
+                    </p:fieldset>
+
+                </c:forEach>
+
+            </h:form>
+            <h:outputText>${msg["SECURED"]}</h:outputText>
+            <h:form>
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton action="#{navigationRules.cadastroUser}" value='${msg["REGISTRATITON_USER"]}' style="margin-right:20px;" />
+
+                        <p:commandButton action="#{navigationBean.toCadastroMensagem}" value='${msg["REGISTRATITON_MESSAGE"]}' style="margin-right:20px;" />
+
+                    </f:facet>
+                    <f:facet name="right">
+                        <p:commandButton action="#{loginBean.doLogout}" value='${msg["LOGOUT"]}' style="margin-right:20px;" />
+                    </f:facet>
+                </p:toolbar>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,29 @@
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="pageTitle" value="Pagina de Noticias - Blog Abobrinha"/>
+    <ui:param name="footerTitle" value="OizumiKurodaTek, Copyright © 2015 - All rights reserved."/>
+    <ui:define name="principal">
+        <h:head>
+            <title>Facelet Title</title>
+        </h:head>
+        <h:body>
+            <h:form id="formAtualizar">
+                <p:panelGrid id="panelAlterar" columns="2">
+                    <h:outputText value="Título:" />
+                    <p:inputText value="#{mensagemBean.mensagem.titulo}" />
+                    <h:outputText value="Texto:" />
+                    <p:inputTextarea value="#{mensagemBean.mensagem.texto}" />
+                </p:panelGrid>
+                <p:commandButton value="Alterar" actionListener="#{mensagemBean.atualizar}" update="formAtualizar"/>
+            </h:form>
+            <p:commandLink action="#{navigationBean.redirectToWelcome}" value="voltar para welcome"/>
+        </h:body>
+    </ui:define>
+</ui:composition>
+

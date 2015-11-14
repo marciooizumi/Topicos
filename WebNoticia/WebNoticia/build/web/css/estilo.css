@@ -1,0 +1,34 @@
+#page {
+    background: url(../img/bs-docs-masthead-pattern.png) repeat center center, -webkit-linear-gradient(45deg, #020031 0%, #6D3353 100%);
+    padding: 30px;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+    margin-bottom: 10px;
+}
+
+#page h1 {
+    color: #FFF;
+    font-size: 70px;
+}
+
+#page p {
+    color: #FFF;
+    font-size: 20px;
+}
+
+#page ul {
+    list-style: none;
+}
+
+footer {
+    text-align: center;
+}
+
+#painelusuario {
+    border-left: 1px solid #DDD;
+    padding-left: 20px;
+}
+
+h1.ultimas {
+    text-align: center;
+}
