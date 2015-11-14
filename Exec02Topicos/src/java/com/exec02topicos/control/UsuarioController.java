@@ -22,6 +22,8 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        RequestDispatcher resp = req.getRequestDispatcher("/WEB-INF/view/cadastro.jsp");
+        resp.forward(req, res);
 
     }
 
@@ -37,10 +39,10 @@ public class UsuarioController extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            response.sendRedirect("view/welcome.jsp");
+            response.sendRedirect("CidadeController");
         } else {
             request.setAttribute("error", "Erro ao cadastrar"); //dao.getLastMessage());
-            RequestDispatcher resp = request.getRequestDispatcher("erro.jsp");
+            RequestDispatcher resp = request.getRequestDispatcher("/WEB-INF/view/cadastro.jsp");
             resp.forward(request, response);
         }
     }
