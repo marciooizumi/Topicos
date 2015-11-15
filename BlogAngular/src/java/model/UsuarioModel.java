@@ -15,6 +15,8 @@ public class UsuarioModel {
         if (nome.equals("") || senha.equals("") || email.equals("")) {
             return;
         }
+        
+     
 
         usu.setNome(nome);
         usu.setSenha(senha);
