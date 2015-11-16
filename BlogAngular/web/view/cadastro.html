@@ -28,7 +28,6 @@
     </head>
     <body ng-controller="UsuarioController as controller">
         <h1>Controle de usuarios</h1>
-        <form novalidate>
             <!--        <input ng-model="controller.busca"
                            ng-keypress="controller.add($event)"
                            ng-keyup="controller.search()"
@@ -43,7 +42,6 @@
                         </li>
                     </ul>
             -->
-            <output value="Nome:"/>
             <input ng-model="controller.buscaNome" 
                    type="text" name="nome" value=""
                    autocomplete="off"/>
@@ -55,6 +53,5 @@
                    type="text" name="email" value=""
                    autocomplete="off"/>
             <script type="text/javascript" charset="utf-8" src="UsuarioController.js"></script>
-        </form>
     </body>
 </html>
