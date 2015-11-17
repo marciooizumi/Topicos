@@ -29,7 +29,7 @@ public class UsuarioModel {
 
    public EntityManagerFactory getFactory () {
         if (UsuarioModel.factory == null)
-            UsuarioModel.factory = Persistence.createEntityManagerFactory("jpa01");
+            UsuarioModel.factory = Persistence.createEntityManagerFactory("xrmiPU");
         return UsuarioModel.factory;
     }
 }
