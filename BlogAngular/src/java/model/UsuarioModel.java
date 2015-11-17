@@ -7,32 +7,29 @@ import javax.persistence.Persistence;
 public class UsuarioModel {
 
     private static EntityManagerFactory factory = null;
-    
-    public void inserir (String nome, String senha, String email){
-        EntityManager em = UsuarioModel.getEM();
+
+    public void inserir(String nome, String senha, String email) {
         Usuario usu = new Usuario();
 
         if (nome.equals("") || senha.equals("") || email.equals("")) {
             return;
         }
-        
-     
 
         usu.setNome(nome);
         usu.setSenha(senha);
         usu.setEmail(email);
 
-
+//        EntityManager em = getEM();
+        EntityManager em = this.getFactory().createEntityManager();
         em.getTransaction().begin();
         em.persist(usu);
         em.getTransaction().commit();
         em.close();
     }
 
-    private static EntityManager getEM() {
-        if (UsuarioModel.factory == null) {
-            UsuarioModel.factory = Persistence.createEntityManagerFactory("BlogAngularPU");
-        }
-        return UsuarioModel.factory.createEntityManager();
+   public EntityManagerFactory getFactory () {
+        if (UsuarioModel.factory == null)
+            UsuarioModel.factory = Persistence.createEntityManagerFactory("jpa01");
+        return UsuarioModel.factory;
     }
 }

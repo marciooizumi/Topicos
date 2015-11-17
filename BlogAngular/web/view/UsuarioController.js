@@ -16,7 +16,7 @@ angular.module("usuarioApp", ["ngAnimate"])
                 self.add = function (ev) {
                     if (ev.keyCode === 13) {
                         document.getElementById("texto").innerHTML = "Ate aqui tudo bem";
-                        $http.post("CadastroController", "nome=" + self.buscaNome + "&senha=" + self.buscaSenha + "&email=" + self.buscaEmail + "&method=adicionar", {
+                        $http.post("../CadastroController", "nome=" + self.buscaNome + "&senha=" + self.buscaSenha + "&email=" + self.buscaEmail + "&method=adicionar", {
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             }
